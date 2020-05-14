@@ -6,7 +6,7 @@
 #include <cstdlib>
 using namespace std;
 
-
+//test for git
 
 void Ausgabe(int waehler[], int length, const int width)
 {
@@ -47,6 +47,10 @@ void Ausgabe(int waehler[], int length, const int width)
 //        }
     }
 }
+
+//function staaart(){
+//console.log("test");
+//}
 
 int main_OLD()
 {
