@@ -1,0 +1,195 @@
+#include <iostream>
+#include <Windows.h>
+#include <stdio.h>
+#include <ctime>
+#include <time.h>
+using namespace std;
+
+
+
+void Ausgabe(int waehler[], int length, const int width)
+{
+    int colors[] = {4,7,9,12,14};
+    int arr[length];
+//    bool isZero = true;
+
+    HANDLE outputHandle= GetStdHandle(STD_OUTPUT_HANDLE);
+//    srand(time(nullptr));
+    system("cls");
+    for (int i=0; i < length; i++)
+    {
+        SetConsoleTextAttribute(outputHandle, colors[waehler[i]]);
+        // if( partei[i]== 0)
+        // {
+        // SetConsoleTextAttribute(outputHandle, 4);
+        // }
+        // if( partei[i]== 1)
+        // {
+        // SetConsoleTextAttribute(outputHandle, 7);
+        // }
+
+
+        cout<< waehler[i];
+        if( (i+1) % width == 0)
+        // if( (i+1) % width_of_the_column == 0)
+        {
+            cout<<endl;
+        }
+//        {
+//            if(arr[i] != 0 || arr[i] !=1)
+//            {
+//                isZero = false;
+//            }
+//            if(isZero)
+//            {
+//                exit(0);
+//            }
+//        }
+    }
+}
+
+int main()
+{
+
+    const int arrayLength = 400;
+    int partei[arrayLength];
+    const int numberOfParties = 2;
+    bool isZero = true;
+    int i=0;
+    const int width_of_the_column = 20;
+    srand(time(nullptr));
+    int seconds = 300;
+    time_t now = time(nullptr);
+    time_t endwait = now + seconds;
+    for (i=0; i<arrayLength ; i++)
+    {
+        partei[i]= rand()% numberOfParties;
+    }
+
+
+// for (i=0; i<arrayLength; i++)
+// {
+// SetConsoleTextAttribute(outputHandle, colors[partei[i]]);
+// cout<< partei[i];
+// if( (i+1) % width_of_the_column == 0) {
+// cout<<endl;
+// }
+// }
+
+// for (;;)
+//    while (true)
+    while(now < endwait)
+    {
+    for (int i=0; i < arrayLength; i++)
+    {
+        if(partei[i] != partei[i-1])
+        {
+            isZero = 0;
+        }
+        if(isZero)
+        {
+            exit(0);
+        }
+    }
+
+//        Sleep(50);
+        Ausgabe(partei, arrayLength, width_of_the_column);
+//        srand(time(nullptr));
+//        Sleep(10);
+
+
+//    system("cls");
+//    for (i=0; i<arrayLength; i++)
+//    {
+//        // SetConsoleTextAttribute(outputHandle, colors[partei[i]]);
+//        cout<< partei[i];
+//        if( (i+1) % width_of_the_column == 0)
+//        {
+//            cout<<endl;
+//        }
+//    }
+
+
+        for (int c=0; c<999 ; c++)
+        {
+            i = rand()% arrayLength; // zufälliger Bürger, ausgewählt aus 400
+            int j=0;
+
+
+            // int k=width_of_the_column;
+            // if(rand()%2 == 0)
+            // {
+            // //rechts
+            // j = 1;
+            // }
+            // else if (k = 50)
+            // {
+            // //oben
+
+            // }
+            // else if (k = -50)
+            // {
+            // //unten
+
+            // }
+            // else
+            // {
+            // //links
+            // j = -1;
+            // }
+
+            int direction = rand()%2;
+
+            if(direction == 0)
+
+            {
+                //rechts
+                j = 1;
+            }
+            // else if (direction == 1)
+            // {
+            // //oben
+            // j -= 50;
+            // }
+            // else if (direction == 2)
+            // {
+            // //unten
+            // j += 50;
+            // }
+            else
+            {
+                //links
+                j = -1;
+            }
+
+            int person2 = i+j;
+
+            if (person2 <0)
+            {
+                person2 = arrayLength-1;
+            }
+            else if (person2 >=arrayLength)
+            {
+                person2 = 0;
+            }
+
+            if(partei[i] != partei[person2])
+            {
+                if ((rand()%2) == 0)
+                {
+                    partei[i] = partei[person2];
+                }
+                else
+                {
+                    partei[person2] = partei[i];
+                }
+
+            }
+
+            now = time(nullptr);
+
+        }
+    }
+    return 0;
+}
+
