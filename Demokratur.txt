@@ -6,7 +6,7 @@
 #include <cstdlib>
 using namespace std;
 
-
+//test
 
 void Ausgabe(int waehler[], int length, const int width)
 {
