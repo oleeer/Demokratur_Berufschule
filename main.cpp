@@ -1,23 +1,30 @@
 #include <iostream>
-#include <Windows.h>
+#include <windows.h>
 #include <stdio.h>
 #include <ctime>
 #include <time.h>
 #include <cstdlib>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>
 using namespace std;
 
-//test for git
-
-void Ausgabe(int waehler[], int length, const int width)
+void Ausgabe(int waehler[], int x, const int width)
 {
     int colors[] = {4,7,9,12,14};
-    int arr[length];
+
+//
+
+
+
 
     HANDLE outputHandle= GetStdHandle(STD_OUTPUT_HANDLE);
 
     system("cls");
-    for (int i=0; i < length; i++)
+    for (int i=0; i < x; i++)
     {
+        // hier muss interger sein und keine array fehld
+        // zeihst du ?
+        // du hast string in der Array drin und kein integer
         SetConsoleTextAttribute(outputHandle, colors[waehler[i]]);
         // if( partei[i]== 0)
         // {
@@ -48,23 +55,21 @@ void Ausgabe(int waehler[], int length, const int width)
     }
 }
 
-//function staaart(){
-//console.log("test");
-//}
-
-int main_OLD()
+int main()
 {
 
     const int arrayLength = 400;
     int partei[arrayLength];
-    const int numberOfParties = 2;
+    const int numberOfParties = 5;
     bool isZero = true;
+    int d=0;
     int i=0;
     const int width_of_the_column = 20;
-    srand(time(nullptr));
-    int seconds = 30;
+    srand (time(nullptr));
+   // int seconds = 30;// bruder wie willst simulation machen ohne das Program im abläuf zu bringen ?
+
     time_t now = time(nullptr);
-    time_t endwait = now + seconds;
+   // time_t endwait = now + seconds;
     for (i=0; i<arrayLength; i++)
     {
         partei[i]= rand()% numberOfParties;
@@ -81,28 +86,31 @@ int main_OLD()
 // }
 
 // for (;;)
-    while (true)
 
 //    while(now < endwait)
+    while (true)
     {
-    for (int i=0; i < arrayLength; i++)
-    {
-        if(partei[i] != partei[i-1] || i>=400)
+        isZero = true;
+        for (int i=1; i < arrayLength; i++)
         {
-            if(isZero = 0)
+            if(partei[i] != partei[i-1] || i>=400)
             {
+                isZero = false;
                 break;
             }
         }
 
-        {
+        Ausgabe(partei, arrayLength, width_of_the_column);
 
-            system ("pause");
+        if(isZero == true)
+        {
+            break;
+
+            //ERFOLG
         }
-    }
+
 
 //        Sleep(50);
-        Ausgabe(partei, arrayLength, width_of_the_column);
 
         for (int c=0; c<999 ; c++)
         {
